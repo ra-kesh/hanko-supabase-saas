@@ -1,9 +1,19 @@
 import Link from "next/link";
+import { LogoutBtn } from "@/components/LogoutButton";
+import { useUserId } from "./hooks/useUserId";
 
-export default function Home() {
+export default async function Home() {
+  const userID = await useUserId();
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Link href="/login"> Login </Link>
+    <main className="flex min-h-screen flex-col items-center  p-24">
+      {userID ? (
+        <>
+          <LogoutBtn />
+        </>
+      ) : (
+        <Link href="/login"> Login </Link>
+      )}
     </main>
   );
 }
