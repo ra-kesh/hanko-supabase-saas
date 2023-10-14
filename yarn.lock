@@ -19,6 +19,11 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@denysvuika/preact-translate@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@denysvuika/preact-translate/-/preact-translate-0.5.0.tgz#06fe1d31497b13734def2cc8a64a68001b03bd2f"
+  integrity sha512-hcWbmA5+05JRYGPhl64kDiJ+rWLOKe4tDi0y7cXVKe+hwu6H0KphyAwLvVbCSTTtnfXvAijnEZMOf/kCsdPFrQ==
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -191,6 +196,34 @@
   integrity sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==
   dependencies:
     tslib "^2.4.0"
+
+"@teamhanko/hanko-elements@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@teamhanko/hanko-elements/-/hanko-elements-0.8.4.tgz#44356f7ab92db57d597985286b02729f5c4f55a9"
+  integrity sha512-wjZbRbXG45iPsH9D22KwFrI4nAXxX8yKO88CxGeDKXzzkwGRP+R+ysvJt/1LvRSX6sul6Wemk7osh+dZD6K8tw==
+  dependencies:
+    "@denysvuika/preact-translate" "^0.5.0"
+    "@teamhanko/hanko-frontend-sdk" "^0.8.4"
+    "@teamhanko/preact-custom-element" "^4.2.2"
+    classnames "^2.3.2"
+    preact "^10.13.1"
+
+"@teamhanko/hanko-frontend-sdk@^0.8.4":
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/@teamhanko/hanko-frontend-sdk/-/hanko-frontend-sdk-0.8.4.tgz#7c1e37c06fbf2823343c1b21e674d3662a875b55"
+  integrity sha512-Lt9WnQ6Esmp+x7iGiW6nhuKqvYexXCanXH2XQETniJY9+HnXVSI5BTjuF9RlajN2/oaSzSKzW0HdHcrZWDGf5g==
+  dependencies:
+    "@types/js-cookie" "^3.0.3"
+
+"@teamhanko/preact-custom-element@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@teamhanko/preact-custom-element/-/preact-custom-element-4.2.2.tgz#67e9ebb54da2607e818f360be0b69e9fde9c01ee"
+  integrity sha512-3djCQr25IxQIgpidxD8J0fTQ7/hMuoa5Nmv7delQc6sX4kXgv9e/pE01cywpmGZLi69H1KUH4dmZ4cPPJQrsQQ==
+
+"@types/js-cookie@^3.0.3":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@types/js-cookie/-/js-cookie-3.0.4.tgz#23475b6d3b03acc84192e7c24da88eb38c1039ef"
+  integrity sha512-vMMnFF+H5KYqdd/myCzq6wLDlPpteJK+jGFgBus3Da7lw+YsDmx2C8feGTzY2M3Fo823yON+HC2CL240j4OV+w==
 
 "@types/json5@^0.0.29":
   version "0.0.29"
@@ -544,6 +577,11 @@ chokidar@^3.5.3:
     readdirp "~3.6.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+classnames@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
+  integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
 
 client-only@0.0.1:
   version "0.0.1"
@@ -1502,6 +1540,11 @@ jiti@^1.18.2:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.20.0.tgz#2d823b5852ee8963585c8dd8b7992ffc1ae83b42"
   integrity sha512-3TV69ZbrvV6U5DfQimop50jE9Dl6J8O1ja1dvBbMba/sZ3YBEQqJ2VZRoQPVnhlzjNtU1vaXRZVrVjU4qtm8yA==
 
+jose@^4.15.3:
+  version "4.15.3"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-4.15.3.tgz#92fdac3ff0f345aab103211fc90b58f187fcdceb"
+  integrity sha512-RZJdL9Qjd1sqNdyiVteRGV/bnWtik/+PJh1JP4kT6+x1QQMn+7ryueRys5BEueuayvSVY8CWGCisCDazeRLTuw==
+
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -1913,6 +1956,11 @@ postcss@8.4.31, postcss@^8, postcss@^8.4.23:
     nanoid "^3.3.6"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
+
+preact@^10.13.1:
+  version "10.18.1"
+  resolved "https://registry.yarnpkg.com/preact/-/preact-10.18.1.tgz#3b84bb305f0b05f4ad5784b981d15fcec4e105da"
+  integrity sha512-mKUD7RRkQQM6s7Rkmi7IFkoEHjuFqRQUaXamO61E6Nn7vqF/bo7EZCmSyrUnp2UWHw0O7XjZ2eeXis+m7tf4lg==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
