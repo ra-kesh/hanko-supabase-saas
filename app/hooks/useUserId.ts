@@ -3,9 +3,14 @@ import * as jose from "jose";
 
 export async function useUserId() {
   const token = cookies().get("hanko")?.value;
-  const payload = jose.decodeJwt(token ?? "");
 
-  const userID = payload.sub;
+  if (!token) {
+    return null;
+  } else {
+    const payload = jose.decodeJwt(token);
 
-  return userID;
+    const userID = payload.sub;
+
+    return userID;
+  }
 }
