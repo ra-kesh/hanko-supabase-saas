@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "5.4.2",
     "@teamhanko/hanko-elements": "^0.8.4",
     "jose": "^4.15.3",
     "next": "13.5.4",

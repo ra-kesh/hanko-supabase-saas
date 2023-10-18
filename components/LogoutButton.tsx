@@ -27,5 +27,9 @@ export function LogoutBtn() {
     }
   };
 
-  return <button onClick={logout}>Logout</button>;
+  return (
+    <button onClick={logout} className="border ">
+      Logout
+    </button>
+  );
 }
