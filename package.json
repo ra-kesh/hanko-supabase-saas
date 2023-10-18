@@ -12,6 +12,7 @@
     "@teamhanko/hanko-elements": "^0.8.4",
     "jose": "^4.15.3",
     "next": "13.5.4",
+    "prisma": "^5.4.2",
     "react": "^18",
     "react-dom": "^18"
   },
