@@ -1,69 +1,57 @@
-"use client";
+import React from "react";
+import PostCreateButton from "./components/PostCreateButton";
+import { userId } from "../api/user/route";
+import prisma from "@/lib/prisma";
+import Link from "next/link";
 
-import { LogoutBtn } from "@/components/LogoutButton";
-import { Hanko } from "@teamhanko/hanko-elements";
-import { useEffect, useState } from "react";
-
-const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL as string;
-const hanko = new Hanko(hankoApi);
-
-const DashboardPage = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    async function getEmailFromHanko() {
-      const { email } = await hanko.user.getCurrent();
-      setEmail(email);
-    }
-    getEmailFromHanko();
-  }, []);
-
-  const handleFormSubmit = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    await fetch(`/api/user`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name,
-        email,
-      }),
-    });
-  };
+const DashBaordHeader = ({ heading, text, children }) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
+    <div className="flex items-center justify-between px-2">
+      <div className="grid gap-1">
+        <h1 className="text-3xl md:text-4xl">{heading}</h1>
+        {text && <p className="text-lg text-muted-foreground">{text}</p>}
+      </div>
+      {children}
+    </div>
+  );
+};
+
+const DashboardPage = async () => {
+  const userID = await userId();
+
+  const posts = await prisma.post.findMany({
+    where: {
+      authorId: userID,
+    },
+    select: {
+      postId: true,
+      title: true,
+      createdAt: true,
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
+
+  return (
+    <div className="grid items-start gap-8">
+      <DashBaordHeader heading="Posts" text="Create and manage posts">
+        <PostCreateButton />
+      </DashBaordHeader>
       <div>
-        <form onSubmit={handleFormSubmit}>
-          <div className="flex flex-col gap-5">
-            <div>
-              <label htmlFor="email">Email:</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="border w-full"
-              />
-            </div>
-            <div>
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="border w-full"
-              />
-            </div>
-            <button type="submit" className="border px-5 pl-3">
-              Submit
-            </button>
-            <LogoutBtn />
+        {posts?.length ? (
+          <div className="divide-y divide-border rounded-md border">
+            {posts.map((post) => {
+              return (
+                <div key={post.postId}>
+                  <Link href={`/editor/${post.postId}`}>{post.title}</Link>
+                </div>
+              );
+            })}
           </div>
-        </form>
+        ) : (
+          <div>no posts</div>
+        )}
       </div>
     </div>
   );
