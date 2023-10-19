@@ -1,12 +1,12 @@
 import useLocalStorage from "@/lib/useLocalStorage";
-import { EditorContent, useEditor } from "@tiptap/react";
+import { EditorContent, JSONContent, useEditor } from "@tiptap/react";
 import React, { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { TiptapEditorProps } from "./props";
 import { TiptapExtensions } from "./extension";
 
-const Editor = () => {
-  const [content, setContent] = useLocalStorage("content", []);
+const Editor = ({ content, setContent }) => {
+  // const [content, setContent] = useLocalStorage("content", []);
   const [saveStatus, setSaveStatus] = useState("saved");
   const [hydrated, setHydrated] = useState(false);
 
