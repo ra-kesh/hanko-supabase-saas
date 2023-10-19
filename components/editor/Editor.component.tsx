@@ -1,8 +1,9 @@
 import useLocalStorage from "@/lib/useLocalStorage";
-import { EditorContent, JSONContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { EditorContent, useEditor } from "@tiptap/react";
 import React, { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
+import { TiptapEditorProps } from "./props";
+import { TiptapExtensions } from "./extension";
 
 const Editor = () => {
   const [content, setContent] = useLocalStorage("content", []);
@@ -10,7 +11,8 @@ const Editor = () => {
   const [hydrated, setHydrated] = useState(false);
 
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: TiptapExtensions,
+    editorProps: TiptapEditorProps,
     onUpdate: (e) => {
       setSaveStatus("typing...");
       debouncedUpdates(e);
@@ -29,6 +31,7 @@ const Editor = () => {
   useEffect(() => {
     if (editor && content && !hydrated) {
       editor.commands.setContent(content);
+      editor.commands.focus("end");
       setHydrated(true);
     }
   }, [editor, content, hydrated]);

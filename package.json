@@ -11,6 +11,7 @@
   "dependencies": {
     "@prisma/client": "5.4.2",
     "@teamhanko/hanko-elements": "^0.8.4",
+    "@tiptap/extension-placeholder": "^2.1.12",
     "@tiptap/pm": "^2.1.12",
     "@tiptap/react": "^2.1.12",
     "@tiptap/starter-kit": "^2.1.12",
