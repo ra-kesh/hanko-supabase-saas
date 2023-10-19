@@ -18,8 +18,8 @@ export default function HankoAuth() {
   }, []);
 
   const redirectAfterLogin = useCallback(() => {
-    // successfully logged in, redirect to a page in your application
-    router.push("/");
+    router.refresh();
+    router.push("/dashboard");
   }, [router]);
 
   useEffect(
@@ -32,7 +32,6 @@ export default function HankoAuth() {
 
   useEffect(() => {
     register(hankoApi).catch((error) => {
-      // handle error
       console.error(error);
     });
   }, []);
