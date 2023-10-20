@@ -2,11 +2,11 @@ import { cookies } from "next/headers";
 import * as jose from "jose";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { useRouter } from "next/navigation";
 
 export async function userId() {
   const token = cookies().get("hanko")?.value;
   const payload = jose.decodeJwt(token ?? "");
-
   return payload.sub;
 }
 

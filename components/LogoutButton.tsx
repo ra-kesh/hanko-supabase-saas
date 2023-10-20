@@ -16,20 +16,11 @@ export function LogoutBtn() {
     );
   }, []);
 
-  const logout = async () => {
-    try {
-      await hanko?.user.logout();
-      router.push("/login");
-      router.refresh();
-      return;
-    } catch (error) {
-      console.error("Error during logout:", error);
-    }
-  };
+  hanko?.onUserLoggedOut(() => {
+    router.push("/login");
+  });
 
-  return (
-    <button onClick={logout} className="border ">
-      Logout
-    </button>
-  );
+  const logout = async () => await hanko?.user.logout();
+
+  return <button onClick={logout}>Logout</button>;
 }

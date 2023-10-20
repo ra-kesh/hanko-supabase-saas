@@ -12,13 +12,18 @@ export default function HankoAuth() {
   const [hanko, setHanko] = useState<Hanko>();
 
   useEffect(() => {
+    register(hankoApi).catch((error) => {
+      console.error(error);
+    });
+  }, []);
+
+  useEffect(() => {
     import("@teamhanko/hanko-elements").then(({ Hanko }) =>
       setHanko(new Hanko(hankoApi))
     );
   }, []);
 
   const redirectAfterLogin = useCallback(() => {
-    router.refresh();
     router.push("/dashboard");
   }, [router]);
 
@@ -29,12 +34,6 @@ export default function HankoAuth() {
       }),
     [hanko, redirectAfterLogin]
   );
-
-  useEffect(() => {
-    register(hankoApi).catch((error) => {
-      console.error(error);
-    });
-  }, []);
 
   return <hanko-auth />;
 }
