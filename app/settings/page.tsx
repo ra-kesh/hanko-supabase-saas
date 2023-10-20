@@ -4,20 +4,29 @@ import { LogoutBtn } from "@/components/LogoutButton";
 import { Hanko } from "@teamhanko/hanko-elements";
 import { useEffect, useState } from "react";
 
-const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL as string;
-const hanko = new Hanko(hankoApi);
+const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL || "";
+// const hanko = new Hanko(hankoApi);
 
-const DashboardPage = () => {
+// redo this page completely
+
+const SettingsPage = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [hanko, setHanko] = useState<Hanko>();
 
   useEffect(() => {
-    async function getEmailFromHanko() {
-      const { email } = await hanko.user.getCurrent();
-      setEmail(email);
-    }
-    getEmailFromHanko();
+    import("@teamhanko/hanko-elements").then(({ Hanko }) =>
+      setHanko(new Hanko(hankoApi))
+    );
   }, []);
+
+  // useEffect(() => {
+  //   async function getEmailFromHanko() {
+  //     const { id, email } = await hanko?.user.getCurrent();
+  //     setEmail(email);
+  //   }
+  //   getEmailFromHanko();
+  // }, [hanko]);
 
   const handleFormSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -69,4 +78,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default SettingsPage;
