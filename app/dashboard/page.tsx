@@ -3,18 +3,8 @@ import PostCreateButton from "./components/PostCreateButton";
 import { userId } from "../api/user/route";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
-
-const DashBaordHeader = ({ heading, text, children }) => {
-  return (
-    <div className="flex items-center justify-between px-2">
-      <div className="grid gap-1">
-        <h1 className="text-3xl md:text-4xl">{heading}</h1>
-        {text && <p className="text-lg text-muted-foreground">{text}</p>}
-      </div>
-      {children}
-    </div>
-  );
-};
+import { formatDate } from "@/lib/utils";
+import { DashBaordHeader } from "./components/DashBoardHeader";
 
 const DashboardPage = async () => {
   const userID = await userId();
@@ -40,12 +30,23 @@ const DashboardPage = async () => {
       </DashBaordHeader>
       <div>
         {posts?.length ? (
-          <div className="divide-y divide-border rounded-md border">
+          <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2  md:grid-cols-4">
             {posts.map((post) => {
               return (
-                <div key={post.postId}>
-                  <Link href={`/editor/${post.postId}`}>{post.title}</Link>
-                </div>
+                <Link
+                  href={`/editor/${post.postId}`}
+                  key={post.postId}
+                  className="cursor-pointer"
+                >
+                  <div className="relative overflow-hidden rounded-lg border p-2">
+                    <div className="flex h-[180px] flex-col rounded-md p-6 space-y-2">
+                      <h3 className="font-bold"> {post.title}</h3>
+                      <p className="text-sm">
+                        {formatDate(post.createdAt?.toDateString())}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
               );
             })}
           </div>

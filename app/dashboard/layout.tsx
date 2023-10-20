@@ -15,12 +15,12 @@ export default async function DashboardLayout({
   return (
     <div className="flex min-h-screen flex-col space-y-6">
       <header className="sticky top-0 z-20 border-b">
-        <div className="container flex h-16 items-center justify-between py-4">
+        <div className="container mx-auto flex h-16 items-center justify-between py-4">
           <h1>Something</h1>
           <p>{userID}</p>
         </div>
       </header>
-      <div>
+      <div className="container mx-auto">
         <main>{children}</main>
       </div>
     </div>
