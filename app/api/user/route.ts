@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import * as jose from "jose";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { useRouter } from "next/navigation";
 
 export async function userId() {
   const token = cookies().get("hanko")?.value;
@@ -12,33 +11,34 @@ export async function userId() {
 
 export async function POST(req: Request) {
   try {
-    const userID = await userId();
-    const { name, email } = await req.json();
+    const { id, email } = await req.json();
 
     const existingUser = await prisma.user.findUnique({
       where: {
-        userId: userID,
+        userId: id,
       },
     });
 
     if (!existingUser) {
       const user = await prisma.user.create({
         data: {
-          userId: userID as string,
+          userId: id,
           email,
-          name,
         },
       });
 
       return NextResponse.json(
-        { message: "Updated User", user },
-        { status: 200 }
+        { message: "User created successfully", user },
+        { status: 201 }
       );
     } else {
-      return NextResponse.json({ message: "User already exists" });
+      return NextResponse.json(
+        { message: "User already exists", user: existingUser },
+        { status: 200 }
+      );
     }
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error });
+    return NextResponse.json({ message: "User creation failed", error });
   }
 }
