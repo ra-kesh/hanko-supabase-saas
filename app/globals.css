@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color: #111827;
+  --brand-color-shade-1: #111827;
+  --brand-color: #111827;
+  --background-color: #ffffff;
+  --border-radius: 6px;
+  --item-height: 36px;
+  --link-color: #111827;
+}
+
+hanko-profile {
+  --container-max-width: full;
+  --container-padding: 24px;
+}
+
+hanko-profile::part(container) {
+  border: solid 1px #d8dee3;
+  border-radius: 6px;
+}
+
+hanko-profile::part(input) {
+  background-color: #ffffff;
+  margin-bottom: 12px;
+}
