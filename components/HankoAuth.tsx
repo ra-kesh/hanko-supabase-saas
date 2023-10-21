@@ -25,13 +25,14 @@ export default function HankoAuth() {
 
   const redirectAfterLogin = useCallback(
     (user: any) => {
-      let redirectURL = "/dashboard";
+      let redirectURL;
+
       if (!user) {
         redirectURL = "/login";
-      } else if (user.name) {
-        redirectURL = "/dashboard";
-      } else {
+      } else if (!user.name) {
         redirectURL = "/dashboard/profile";
+      } else {
+        redirectURL = "/dashboard";
       }
 
       router.replace(redirectURL);
@@ -45,7 +46,7 @@ export default function HankoAuth() {
         try {
           const { id, email } = await hanko.user.getCurrent();
 
-          const user = await createUserOnDB(id, email);
+          const { user } = await createUserOnDB(id, email);
 
           redirectAfterLogin(user);
         } catch (error) {
