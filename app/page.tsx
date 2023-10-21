@@ -1,10 +1,10 @@
-import { LogoutBtn } from "@/components/LogoutButton";
+import Link from "next/link";
 
 export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center  p-24">
       <div>
-        <LogoutBtn />
+        <Link href="/login"> Login </Link>
       </div>
     </main>
   );

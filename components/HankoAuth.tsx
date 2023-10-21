@@ -4,7 +4,7 @@ import { useEffect, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { register, Hanko } from "@teamhanko/hanko-elements";
 
-const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL as string;
+const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL || "";
 
 export default function HankoAuth() {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function HankoAuth() {
   }, []);
 
   const redirectAfterLogin = useCallback(() => {
-    router.push("/dashboard");
+    router.replace("/dashboard");
   }, [router]);
 
   useEffect(
