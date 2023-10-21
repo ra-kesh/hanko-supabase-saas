@@ -5,7 +5,7 @@ export const DashBaordHeader = ({
 }: {
   heading: string;
   text: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) => {
   return (
     <div className="flex items-center justify-between px-2">
