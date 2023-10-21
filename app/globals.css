@@ -13,7 +13,8 @@
 }
 
 hanko-profile {
-  --container-max-width: 400px;
+  --container-max-width: full;
+  --container-padding: 24px;
 }
 
 hanko-profile::part(container) {
