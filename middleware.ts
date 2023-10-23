@@ -11,10 +11,16 @@ export async function middleware(req: NextRequest) {
     new URL(`${hankoApiUrl}/.well-known/jwks.json`)
   );
 
+  // to be checked later... temporary fix for now
+
   try {
-    await jwtVerify(hanko ?? "", JWKS);
-  } catch {
-    return NextResponse.redirect(new URL("/login", req.url));
+    const verifiedJWT = await jwtVerify(hanko ?? "", JWKS);
+    console.log(verifiedJWT);
+  } catch (error: any) {
+    console.error(error);
+    if (error.code !== "ERR_JWKS_TIMEOUT" || !hanko) {
+      return NextResponse.redirect(new URL("/login", req.url));
+    }
   }
 }
 
