@@ -21,7 +21,10 @@ export async function POST(req: Request) {
         },
       });
 
-      return new Response(JSON.stringify(post));
+      return NextResponse.json(
+        { message: "New post created successfully", post },
+        { status: 201 }
+      );
     } else {
       return NextResponse.json(
         { message: "User doesn't exist" },
@@ -30,7 +33,7 @@ export async function POST(req: Request) {
     }
   } catch (error) {
     console.log(error);
-    return NextResponse.json(JSON.stringify(error), { status: 500 });
+    return NextResponse.json({ message: error }, { status: 500 });
   }
 }
 
