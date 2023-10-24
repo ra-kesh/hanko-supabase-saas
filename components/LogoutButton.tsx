@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Hanko } from "@teamhanko/hanko-elements";
+import { toast } from "sonner";
 
 const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL || "";
 
@@ -16,16 +17,19 @@ export function LogoutBtn() {
     );
   }, []);
 
-  const logout = async () => {
-    try {
+  const onLogout = () => {
+    async function logOut() {
       await hanko?.user.logout();
       router.push("/login");
       router.refresh();
-      return;
-    } catch (error) {
-      console.error("Error during logout:", error);
     }
+
+    toast.promise(logOut(), {
+      loading: "we are logging you out",
+      success: "you have logged out successfully",
+      error: "error during logout",
+    });
   };
 
-  return <button onClick={logout}>Logout</button>;
+  return <button onClick={onLogout}>Logout</button>;
 }

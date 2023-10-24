@@ -3,6 +3,8 @@
 import { useEffect, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { register, Hanko } from "@teamhanko/hanko-elements";
+import { User } from "@prisma/client";
+import { toast } from "sonner";
 
 const hankoApi = process.env.NEXT_PUBLIC_HANKO_API_URL || "";
 
@@ -13,7 +15,7 @@ export default function HankoAuth() {
 
   useEffect(() => {
     register(hankoApi).catch((error) => {
-      console.error("Hanko registration error", error);
+      toast.error("Hanko registration error", error);
     });
   }, []);
 
@@ -36,6 +38,8 @@ export default function HankoAuth() {
       }
 
       router.replace(redirectURL);
+
+      toast.success("you have logged in successfully");
     },
     [router]
   );
@@ -43,15 +47,11 @@ export default function HankoAuth() {
   useEffect(
     () =>
       hanko?.onAuthFlowCompleted(async () => {
-        try {
-          const { id, email } = await hanko.user.getCurrent();
+        const { id, email } = await hanko.user.getCurrent();
 
-          const { user } = await createUserOnDB(id, email);
+        const user = await getUserFromDB(id, email);
 
-          redirectAfterLogin(user);
-        } catch (error) {
-          console.error(error);
-        }
+        redirectAfterLogin(user);
       }),
     [hanko, redirectAfterLogin]
   );
@@ -59,7 +59,10 @@ export default function HankoAuth() {
   return <hanko-auth />;
 }
 
-const createUserOnDB = async (id: string, email: string) => {
+const getUserFromDB = async (
+  id: string,
+  email: string
+): Promise<User | void> => {
   const response = await fetch(`/api/user`, {
     method: "POST",
     credentials: "include",
@@ -72,11 +75,11 @@ const createUserOnDB = async (id: string, email: string) => {
     }),
   });
 
-  if (response.ok) {
-    const data = await response.json();
-    return data;
-  } else {
-    console.error("User creation failed");
-    return null;
+  if (!response.ok) {
+    throw new Error("could not get user");
   }
+
+  const { user } = await response.json();
+
+  return user;
 };
