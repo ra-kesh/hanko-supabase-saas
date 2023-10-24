@@ -1,16 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
+import { toast } from "sonner";
 
 const PostCreateButton = () => {
   const router = useRouter();
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  async function onClickCreatePost() {
-    setIsLoading(true);
-
+  async function createPost(): Promise<void> {
     const response = await fetch("api/post", {
       method: "POST",
       headers: {
@@ -21,13 +18,23 @@ const PostCreateButton = () => {
       }),
     });
 
-    setIsLoading(false);
+    if (!response.ok) {
+      throw new Error("Failed to create a new post.");
+    }
 
-    const post = await response.json();
+    const { post } = await response.json();
 
     router.refresh();
 
-    router.push(`/editor/${post.postId}`);
+    router.push(`/editor/${post?.postId}`);
+  }
+
+  function onClickCreatePost() {
+    toast.promise<void>(createPost(), {
+      loading: "Creating a new post...",
+      success: "New post created!",
+      error: "Failed to create a new post.",
+    });
   }
 
   return (

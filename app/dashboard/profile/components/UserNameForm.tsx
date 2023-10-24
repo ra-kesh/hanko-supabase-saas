@@ -1,44 +1,54 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const UserNameForm = () => {
   const [name, setName] = useState("");
 
   useEffect(() => {
     async function getUserDetails() {
-      try {
-        const response = await fetch("/api/user");
-        if (response.ok) {
-          const { user } = await response.json();
-          setName(user?.name ?? "");
-        }
-      } catch (error) {
-        console.error(error);
+      const response = await fetch("/api/user");
+
+      if (!response.ok) {
+        toast.error("could not fetch user details");
       }
+
+      const { user } = await response.json();
+
+      setName(user?.name ?? "");
     }
     getUserDetails();
   }, []);
 
+  async function updateUserName(): Promise<void> {
+    const response = await fetch(`/api/user`, {
+      method: "PATCH",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+      }),
+    });
+
+    if (!response.ok) {
+      toast.error("your name could not be updated");
+      return;
+    }
+
+    const { user } = await response.json();
+
+    setName(user?.name);
+  }
+
   const handleFormSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    try {
-      const response = await fetch(`/api/user`, {
-        method: "PATCH",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-        }),
-      });
 
-      if (response.ok) {
-        const { user } = await response.json();
-        setName(user?.name);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    toast.promise<void>(updateUserName(), {
+      loading: "Updating your name",
+      success: "Your name updated successfully",
+      error: "Failed to update your name ",
+    });
   };
 
   return (
