@@ -10,7 +10,7 @@ const DropdownMenuContent = ({ ...props }) => {
   return (
     <DropdownMenuPortal>
       <DropdownMenuPrimitive.Content
-        className="z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-md"
+        className="z-50 min-w-[8rem] overflow-hidden rounded-md border p-1 shadow-md bg-popover text-popover-foreground"
         {...props}
       />
     </DropdownMenuPortal>
