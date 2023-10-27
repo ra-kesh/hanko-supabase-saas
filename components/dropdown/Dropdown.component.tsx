@@ -28,7 +28,10 @@ const DropdownMenuItem = ({ ...props }) => {
 
 const DropdownMenuSeparator = ({ ...props }) => {
   return (
-    <DropdownMenuPrimitive.Separator className="-mx-1 my-1 h-px " {...props} />
+    <DropdownMenuPrimitive.Separator
+      className="-mx-1 my-1 h-px bg-muted"
+      {...props}
+    />
   );
 };
 

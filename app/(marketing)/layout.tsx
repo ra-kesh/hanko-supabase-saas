@@ -13,7 +13,7 @@ export default async function MarketingLayout({
         <div className="flex h-20 items-center justify-between py-6">
           <MainNav />
           <nav>
-            <Link href="/login">Login</Link>
+            <Link href="/login">Sign in</Link>
           </nav>
         </div>
       </header>

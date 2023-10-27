@@ -31,5 +31,5 @@ export function LogoutBtn() {
     });
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  return <button onClick={onLogout}>Sign out</button>;
 }

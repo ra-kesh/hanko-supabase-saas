@@ -33,6 +33,7 @@ const UserAccountnav = ({ user }: { user: User | null }) => {
         <DropdownMenuItem>
           <Link href="/dashboard/profile">Profile</Link>
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem>
           <LogoutBtn />
         </DropdownMenuItem>
