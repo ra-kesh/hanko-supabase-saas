@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
 
-const HankoAuth = dynamic(() => import("@/components/HankoAuth"), {
+const HankoAuth = dynamic(() => import("@/components/hanko/HankoAuth"), {
   ssr: false,
 });
 

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { userId } from "../api/user/route";
 import Link from "next/link";
-import { LogoutBtn } from "@/components/LogoutButton";
+import { LogoutBtn } from "@/components/hanko/LogoutButton";
 
 export default async function DashboardLayout({
   children,
