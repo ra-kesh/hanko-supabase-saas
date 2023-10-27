@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { userId } from "../api/user/route";
-import Link from "next/link";
 import { LogoutBtn } from "@/components/hanko/LogoutButton";
+import MainNav from "@/components/nav/MainNav.component";
 
 export default async function DashboardLayout({
   children,
@@ -18,10 +18,7 @@ export default async function DashboardLayout({
     <div className="flex min-h-screen flex-col space-y-6">
       <header className="sticky top-0 z-20 border-b">
         <div className="container mx-auto flex h-16 items-center justify-between py-4">
-          <Link href="/">
-            <h1>logo</h1>
-          </Link>
-          <p>{userID}</p>
+          <MainNav />
           <LogoutBtn />
         </div>
       </header>
