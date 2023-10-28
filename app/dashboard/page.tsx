@@ -26,7 +26,7 @@ const DashboardPage = async () => {
   return (
     <div className="grid items-start gap-8">
       <DashBaordHeader heading="Posts" text="Create and manage posts">
-        <PostCreateButton />
+        <PostCreateButton variant={"outline"} />
       </DashBaordHeader>
       <div>
         {posts?.length ? (

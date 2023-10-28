@@ -1,3 +1,6 @@
+import { buttonVariants } from "@/components/button/Button.component";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function Home() {
@@ -5,13 +8,25 @@ export default async function Home() {
     <>
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-40">
         <div className="container flex max-w-[64rem] flex-col items-center gap-16 text-center">
-          <h1 className="font-bold text-3xl sm:text-5xl md:text-6xl  ">
-            An open source saas template built using Hanko,Supabase and Next.js
-            13 App Router.
+          <h1 className="font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl ">
+            An open source app built using Hanko,Supabase and Next.js 14 App
+            router.
           </h1>
           <div className="space-x-4">
-            <Link href="/login">Get Startred</Link>
-            <Link href="/">Github</Link>
+            <Link
+              href="/login"
+              className={cn(buttonVariants({ variant: "default", size: "lg" }))}
+            >
+              Get Started
+            </Link>
+            <Link
+              target="_blank"
+              rel="noreferrer"
+              href={siteConfig.links.github}
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }))}
+            >
+              Github
+            </Link>
           </div>
         </div>
       </section>
