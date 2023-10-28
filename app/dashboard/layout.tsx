@@ -30,13 +30,13 @@ export default function DashboardLayout({
 
   return (
     <div className="flex min-h-screen flex-col space-y-6">
-      <header className="sticky top-0 z-20 border-b">
+      <header className="sticky top-0 z-20 border-b bg-background">
         <div className="container mx-auto flex h-16 items-center justify-between py-4">
           <MainNav />
           <UserAccountnav user={user} />
         </div>
       </header>
-      <div className="container mx-auto">
+      <div className="container mx-auto ">
         <main>{children}</main>
       </div>
     </div>
