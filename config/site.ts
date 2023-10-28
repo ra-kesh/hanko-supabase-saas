@@ -7,5 +7,6 @@ export const siteConfig = {
   links: {
     twitter: "https://twitter.com/kumarakesh",
     github: "https://github.com/ra-kesh",
+    portfolio: "https://rakeshh.vercel.app",
   },
 };
