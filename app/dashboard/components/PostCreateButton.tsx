@@ -1,10 +1,15 @@
 "use client";
 
+import {
+  ButtonProps,
+  buttonVariants,
+} from "@/components/button/Button.component";
+import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
 
-const PostCreateButton = () => {
+const PostCreateButton = ({ className, variant, ...props }: ButtonProps) => {
   const router = useRouter();
 
   async function createPost(): Promise<void> {
@@ -38,7 +43,11 @@ const PostCreateButton = () => {
   }
 
   return (
-    <button onClick={onClickCreatePost} className="border px-5 py-2 rounded-lg">
+    <button
+      onClick={onClickCreatePost}
+      className={cn(buttonVariants({ variant }), className)}
+      {...props}
+    >
       + New Post
     </button>
   );
