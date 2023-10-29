@@ -1,8 +1,10 @@
-import { Library, User } from "lucide-react";
+import { Library, User, ChevronLeft, FileText } from "lucide-react";
 
 export const Icons = {
   logo: Library,
   user: User,
+  back: ChevronLeft,
+  post: FileText,
   supabase: () => (
     <svg
       width="48"

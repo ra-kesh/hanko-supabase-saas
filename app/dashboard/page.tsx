@@ -5,6 +5,13 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import { DashBaordHeader } from "./components/DashBoardHeader";
+import {
+  EmptyPlaceholder,
+  EmptyPlaceholderDescription,
+  EmptyPlaceholderIcon,
+  EmptyPlaceholderTitle,
+} from "@/components/empty/EmptyPlaceholder";
+import { Icons } from "@/components/Icons.component";
 
 const DashboardPage = async () => {
   const userID = await userId();
@@ -51,7 +58,16 @@ const DashboardPage = async () => {
             })}
           </div>
         ) : (
-          <div>no posts</div>
+          <EmptyPlaceholder>
+            <EmptyPlaceholderIcon>
+              <Icons.post className="h-10 w-10" />
+            </EmptyPlaceholderIcon>
+            <EmptyPlaceholderTitle>No posts to display</EmptyPlaceholderTitle>
+            <EmptyPlaceholderDescription>
+              You have&apos;t created any posts yet, start by clicking &apos;
+              New Post &apos; button.
+            </EmptyPlaceholderDescription>
+          </EmptyPlaceholder>
         )}
       </div>
     </div>
