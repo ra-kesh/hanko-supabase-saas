@@ -3,7 +3,17 @@
 import { Extension } from "@tiptap/react";
 import { ReactRenderer } from "@tiptap/react";
 import Suggestion from "@tiptap/suggestion";
-import { Heading1 } from "lucide-react";
+import {
+  Bold,
+  Code,
+  Heading1,
+  Heading2,
+  Heading3,
+  Italic,
+  List,
+  ListOrdered,
+  TextQuote,
+} from "lucide-react";
 import { useCallback } from "react";
 import tippy from "tippy.js";
 
@@ -41,6 +51,72 @@ const getSuggestionItems = () => {
           .deleteRange(range)
           .setNode("heading", { level: 1 })
           .run();
+      },
+    },
+    {
+      title: "Heading 2",
+      icon: <Heading2 />,
+      command: ({ editor, range }) => {
+        editor
+          .chain()
+          .focus()
+          .deleteRange(range)
+          .setNode("heading", { level: 2 })
+          .run();
+      },
+    },
+    {
+      title: "Heading 3",
+      icon: <Heading3 />,
+      command: ({ editor, range }) => {
+        editor
+          .chain()
+          .focus()
+          .deleteRange(range)
+          .setNode("heading", { level: 3 })
+          .run();
+      },
+    },
+    {
+      title: "Bold",
+      icon: <Bold />,
+      command: ({ editor, range }) => {
+        editor.chain().focus().deleteRange(range).setMark("bold").run();
+      },
+    },
+    {
+      title: "Italic",
+      icon: <Italic />,
+      command: ({ editor, range }) => {
+        editor.chain().focus().deleteRange(range).setMark("italic").run();
+      },
+    },
+    {
+      title: "Unordered List",
+      icon: <List />,
+      command: ({ editor, range }) => {
+        editor.chain().focus().deleteRange(range).toggleBulletList().run();
+      },
+    },
+    {
+      title: "Ordered List",
+      icon: <ListOrdered />,
+      command: ({ editor, range }) => {
+        editor.chain().focus().deleteRange(range).toggleOrderedList().run();
+      },
+    },
+    {
+      title: "Quote",
+      icon: <TextQuote />,
+      command: ({ editor, range }) => {
+        editor.chain().focus().deleteRange(range).toggleBlockquote().run();
+      },
+    },
+    {
+      title: "Code",
+      icon: <Code size={18} />,
+      command: ({ editor, range }) => {
+        editor.chain().focus().deleteRange(range).toggleCodeBlock().run();
       },
     },
   ];
