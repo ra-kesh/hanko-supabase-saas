@@ -1,4 +1,5 @@
 // @ts-nocheck
+// todo - better ts support and code optimisation (hard to understand now)
 
 import { Extension } from "@tiptap/react";
 import { ReactRenderer } from "@tiptap/react";
@@ -147,7 +148,6 @@ const CommandList = ({ items, command, editor, range }) => {
             </div>
             <div>
               <p>{item.title}</p>
-              <p>{item.description}</p>
             </div>
           </div>
         );

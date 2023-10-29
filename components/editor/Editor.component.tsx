@@ -1,5 +1,7 @@
 "use client";
 
+// todo - optimistic updates and perf enhancement (too much rerenders now)
+
 import { EditorContent, useEditor } from "@tiptap/react";
 import React, { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -7,10 +9,13 @@ import { TiptapEditorProps } from "./props";
 import { TiptapExtensions } from "./extension";
 import { useRouter } from "next/navigation";
 import TextareaAutosize from "react-textarea-autosize";
+import { Post } from "@prisma/client";
 
-const Editor = ({ post }: { post: any }) => {
-  const [title, setTitle] = useState(post.title);
-  const [content, setContent] = useState(JSON.parse(post.content));
+const Editor = ({ post }: { post: Post | null }) => {
+  const [title, setTitle] = useState(post?.title);
+  const [content, setContent] = useState(() =>
+    post?.content ? JSON.parse(post?.content) : null
+  );
   const [saveStatus, setSaveStatus] = useState("saved");
 
   const router = useRouter();
@@ -38,7 +43,7 @@ const Editor = ({ post }: { post: any }) => {
   async function updatePostConent(content: string) {
     setSaveStatus("saving...");
 
-    const response = await fetch(`/api/post/${post.postId}`, {
+    const response = await fetch(`/api/post/${post?.postId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -57,7 +62,7 @@ const Editor = ({ post }: { post: any }) => {
   async function updatePostTitle(updatedTitle: string) {
     setSaveStatus("saving...");
 
-    const response = await fetch(`/api/post/${post.postId}`, {
+    const response = await fetch(`/api/post/${post?.postId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
