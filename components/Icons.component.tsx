@@ -23,20 +23,6 @@ export const Icons = {
         d="M19.9598 0.799868C21.22 -0.748992 23.7751 0.0996718 23.8054 2.07717L24 31H4.3216C0.71203 31 -1.30109 26.9315 0.943444 24.1727L19.9598 0.799868Z"
         fill="black"
       />
-      <defs>
-        <radialGradient
-          id="paint0_angular_2_17"
-          cx="0"
-          cy="0"
-          r="1"
-          gradientUnits="userSpaceOnUse"
-          gradientTransform="translate(32.7645 27.0374) rotate(22.4673) scale(9.48442 9.39099)"
-        >
-          <stop />
-          <stop offset="0.9999" stop-color="#000C06" />
-          <stop offset="1" stop-color="#3ECF8E" />
-        </radialGradient>
-      </defs>
     </svg>
   ),
   react: () => (
