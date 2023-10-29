@@ -6,6 +6,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { TiptapEditorProps } from "./props";
 import { TiptapExtensions } from "./extension";
 import { useRouter } from "next/navigation";
+import TextareaAutosize from "react-textarea-autosize";
 
 const Editor = ({ post }: { post: any }) => {
   const [title, setTitle] = useState(post.title);
@@ -85,12 +86,11 @@ const Editor = ({ post }: { post: any }) => {
       <div className="absolute right-0 top-0 rounded-lg bg-gray-100 px-2 py-1 text-sm text-gray-400">
         {saveStatus}
       </div>
-      <textarea
+      <TextareaAutosize
         value={title}
-        rows={2}
         onChange={handleTitleChange}
-        className="w-full text-5xl font-bold focus:outline-none overflow-scroll resize-none"
-        placeholder="Enter the title"
+        className="w-full text-5xl font-bold focus:outline-none overflow-hidden resize-none"
+        placeholder="Enter title"
       />
       <EditorContent editor={editor} />
     </div>
