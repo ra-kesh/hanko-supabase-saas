@@ -5,7 +5,7 @@ import React from "react";
 import { DashBaordHeader } from "../components/DashBoardHeader";
 import UserNameForm from "./components/UserNameForm";
 
-const HankoProfile = dynamic(() => import("@/components/HankoProfile"), {
+const HankoProfile = dynamic(() => import("@/components/hanko/HankoProfile"), {
   ssr: false,
 });
 
