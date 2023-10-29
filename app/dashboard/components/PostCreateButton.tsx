@@ -48,7 +48,7 @@ const PostCreateButton = ({ className, variant, ...props }: ButtonProps) => {
       className={cn(buttonVariants({ variant }), className)}
       {...props}
     >
-      + New Post
+      + &nbsp; New Post
     </button>
   );
 };
