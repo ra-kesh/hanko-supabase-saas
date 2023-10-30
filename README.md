@@ -33,7 +33,7 @@ cd hanko-supabase-saas
 3. Install the project dependencies:
 
 ```
-npm install
+yarn
 ```
 
 4. Configure your environment variables. Create a .env.local file in the root directory and add your configuration settings.
@@ -56,7 +56,7 @@ npx prisma migrate dev
 6. start the dev server
 
 ```
-npm run dev
+yarn run dev
 
 ```
 
@@ -68,6 +68,9 @@ npm run dev
 - [ ] Responsive styles
 - [ ] Add OG images and metadata
 - [ ] Dark mode
+- [ ] Stripe
+- [ ] Better error handling
+- [ ] Better ts support
 
 ## License
 
