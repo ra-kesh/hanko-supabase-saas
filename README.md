@@ -8,7 +8,6 @@ An open source example application built using Hanko, Supabase and the new App r
 - [Supabase](https://supabase.io): As the PostgreSQL Database
 - [Next.js 14](https://nextjs.org): For Frontend and Backend
 - [TypeScript](https://www.typescriptlang.org): To add static typing to JavaScript.
-- [PostgreSQL](https://www.postgresql.org): As the database for your app.
 - [Prisma](https://www.prisma.io): For database access and ORM.
 - [Tailwind CSS](https://tailwindcss.com): For easy and customizable styling.
 
