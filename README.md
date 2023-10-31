@@ -69,6 +69,15 @@ yarn run dev
 - [ ] Better error handling
 - [ ] Better ts support
 
+## Resources
+
+- https://dev.to/hanko/make-hanko-components-shine-1d61
+- https://github.com/teamhanko/hanko-nextjs-starter
+- https://docs.hanko.io/tutorials/nextjs-todo
+- https://vercel.com/guides/nextjs-prisma-postgres
+- https://vikramthyagarajan.medium.com/how-to-build-a-notion-like-text-editor-in-react-and-tiptap-7f394c36ed9d
+- https://github.com/steven-tey/novel
+
 ## License
 
 Licensed under the [MIT license](https://github.com/ra-kesh/hanko-supabase-saas/blob/main/LICENSE.md).
