@@ -35,7 +35,7 @@ cd hanko-supabase-saas
 yarn
 ```
 
-4. Configure your environment variables. Create a .env.local file in the root directory and add your configuration settings.
+4. Create a .env.local file in the root directory and configure your environment variables.
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
@@ -49,14 +49,12 @@ HANKO_API_KEY=your-hanko-api-key
 ```
 npx prisma generate
 npx prisma migrate dev
-
 ```
 
 6. start the dev server
 
 ```
 yarn run dev
-
 ```
 
 ## Roadmap
